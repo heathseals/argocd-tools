@@ -2,6 +2,13 @@ version: "1.0"
 stages:
   - release
 steps:
+  get_variables:
+    tile: Variables
+    image: alpine
+    commands:
+      - echo $CF_REPO_OWNER
+      - echo $CF_REPO_NAME
+      - echo $CF_BRANCH
   main_clone:
     title: Cloning repository
     type: git-clone
