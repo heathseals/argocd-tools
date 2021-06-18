@@ -15,8 +15,9 @@ steps:
     type: build
     arguments:
       image_name: heathseals/argocd-tools
+      tag:
+      - latest
       tags:
       - ${{CF_SHORT_REVISION}}
-      - latest
       registry: heathseals
     stage: release
