@@ -6,6 +6,7 @@ steps:
     tile: Variables
     image: alpine
     commands:
+      - env
       - echo $CF_REPO_OWNER
       - echo $CF_REPO_NAME
       - echo $CF_BRANCH
