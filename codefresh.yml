@@ -1,0 +1,22 @@
+version: "1.0"
+stages:
+  - release
+steps:
+  main_clone:
+    title: Cloning repository
+    type: git-clone
+    arguments:
+      git: github
+      repo: "${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}"
+      revision: "${{CF_BRANCH}}"
+    stage: release
+  build_image:
+    title: Building container image
+    type: build
+    arguments:
+      image_name: heathseals/argocd-tools
+      tags:
+      - ${{CF_SHORT_REVISION}}
+      - latest
+      registry: heathseals
+    stage: release
