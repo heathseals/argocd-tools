@@ -13,11 +13,9 @@ steps:
   build_image:
     title: Building container image
     type: build
-    arguments:
-      image_name: heathseals/argocd-tools
-      tag:
-      - latest
-      tags:
-      - ${{CF_SHORT_REVISION}}
-      registry: heathseals
+    image_name: heathseals/argocd-tools
+    tags:
+    - ${{CF_SHORT_REVISION}}
+    - latest
+    registry: heathseals
     stage: release
