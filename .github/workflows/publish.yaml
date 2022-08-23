@@ -22,9 +22,9 @@ jobs:
           token_format: 'access_token'
           workload_identity_provider: 'projects/686723139082/locations/global/workloadIdentityPools/nodata/providers/github'
           service_account: '${{ env.PUBLISHER_PREFIX }}-publisher@k8s-nodata.iam.gserviceaccount.com'
-      - id: setup-pack
-        uses: buildpacks/github-actions/setup-pack@v4.7.0
-      - name: Authenticate to Google Artifact Registry
-        run: gcloud --quiet auth configure-docker us-west1-docker.pkg.dev
-      - name: Build and publish image
-        run: pack build --builder=gcr.io/buildpacks/builder --publish "${{ env.ARTIFACT_REGISTRY_PATH }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
+      - name: Build image
+        run: docker build --build-arg GITHUB_SHA -t "${{ env.ARTIFACT_REGISTRY_PATH }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}" .
+      - name: Authenticate to Google Artifact Registry and push image
+        run: |
+          gcloud --quiet auth configure-docker us-west1-docker.pkg.dev
+          docker push ${{ env.ARTIFACT_REGISTRY_PATH }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
