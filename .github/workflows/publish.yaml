@@ -6,7 +6,7 @@ on:
 jobs:
   release:
     env:
-      ARTIFACT_REGISTRY_PATH: 'us-west1-docker.pkg.dev/nodata-artifacts'
+      ARTIFACT_REGISTRY_PATH: 'us-west1-docker.pkg.dev/k8s-nodata/nodata-artifacts'
       IMAGE_NAME: 'argocd-tools'
       IMAGE_TAG: ${GITHUB_SHA}
       PUBLISHER_PREFIX: 'artifact'
