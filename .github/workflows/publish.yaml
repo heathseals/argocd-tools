@@ -1,4 +1,4 @@
-name: 'Commit: Build and push image to puppet-artifacts Google Artifact Registry'
+name: 'Commit: Build and push image to nodata-artifacts Google Artifact Registry'
 on:
   push:
     branches:
@@ -6,7 +6,7 @@ on:
 jobs:
   release:
     env:
-      ARTIFACT_REGISTRY_PATH: 'us-west1-docker.pkg.dev/puppet-artifacts'
+      ARTIFACT_REGISTRY_PATH: 'us-west1-docker.pkg.dev/nodata-artifacts'
       IMAGE_NAME: 'argocd-tools'
       IMAGE_TAG: ${GITHUB_SHA}
       PUBLISHER_PREFIX: 'artifacts'
@@ -20,8 +20,8 @@ jobs:
         uses: google-github-actions/auth@v0
         with:
           token_format: 'access_token'
-          workload_identity_provider: 'projects/686723139082/locations/global/workloadIdentityPools/puppet-artifacts/providers/github'
-          service_account: '${{ env.PUBLISHER_PREFIX }}-publisher@puppet-artifacts.iam.gserviceaccount.com'
+          workload_identity_provider: 'projects/686723139082/locations/global/workloadIdentityPools/nodata/providers/github'
+          service_account: '${{ env.PUBLISHER_PREFIX }}-publisher@k8s-nodata.iam.gserviceaccount.com'
       - id: setup-pack
         uses: buildpacks/github-actions/setup-pack@v4.7.0
       - name: Authenticate to Google Artifact Registry
