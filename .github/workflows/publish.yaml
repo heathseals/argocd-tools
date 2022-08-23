@@ -9,7 +9,7 @@ jobs:
       ARTIFACT_REGISTRY_PATH: 'us-west1-docker.pkg.dev/nodata-artifacts'
       IMAGE_NAME: 'argocd-tools'
       IMAGE_TAG: ${GITHUB_SHA}
-      PUBLISHER_PREFIX: 'artifacts'
+      PUBLISHER_PREFIX: 'artifact'
     permissions:
       contents: 'read'
       id-token: 'write'
